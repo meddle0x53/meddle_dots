@@ -1,0 +1,13 @@
+{
+  "elixirLS.dialyzerEnabled": false,
+  "elixir.pathToElixirLS": "/home/meddle/development/elixir/elixir-ls/rel/language_server.sh",
+  "languageserver": {
+    "elixir-ls": {
+      "command": "/home/meddle/development/elixir/elixir-ls/rel/language_server.sh",
+      "args": ["--stdin", "--no-color"],
+      "filetypes": ["elixir"],
+      "rootPatterns": [".git/", "mix.exs"],
+      "initializationOptions": {}
+    }
+  }
+}
