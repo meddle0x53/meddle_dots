@@ -1,6 +1,10 @@
+" Change leader to a comma because the backslash is too far away
+" That means all \x commands turn into ,x
+let mapleader=","
+
 call plug#begin()
 
-" List your plugins here
+" List plugins here
 Plug 'tpope/vim-sensible'
 Plug 'preservim/nerdtree'
 
@@ -48,19 +52,6 @@ set hidden
 "turn on syntax highlighting
 syntax on
 
-" Change leader to a comma because the backslash is too far away
-" That means all \x commands turn into ,x
-" The mapleader has to be set before vundle starts loading all
-" the plugins.
-let mapleader=","
-
-" =============== Vundle Initialization ===============
-" This loads all the plugins specified in ~/.vim/vundle.vim
-" Use Vundle plugin to manage all other plugins
-if filereadable(expand("~/.vim/vundles.vim"))
-  source ~/.vim/vundles.vim
-endif
-
 " ================ Turn Off Swap Files ==============
 
 set noswapfile
@@ -69,7 +60,6 @@ set nowb
 
 " ================ Persistent Undo ==================
 " Keep undo history across sessions, by storing in file.
-" Only works all the time.
 if has('persistent_undo')
   silent !mkdir ~/.vim/backups > /dev/null 2>&1
   set undodir=~/.vim/backups
