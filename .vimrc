@@ -9,7 +9,7 @@ Plug 'tpope/vim-sensible'
 Plug 'preservim/nerdtree'
 
 Plug 'elixir-editors/vim-elixir'
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'amiralies/coc-elixir', {'do': 'yarn install && yarn prepack'}
 Plug 'tpope/vim-endwise'
@@ -22,14 +22,26 @@ Plug 'rking/ag.vim'
 
 call plug#end()
 
-let g:ale_fixers = { 'elixir': ['mix_format'] }
-let g:ale_linters = { 'elixir': ['elixir-ls'] }
+"let g:ale_fixers = { 'elixir': ['mix_format'] }
+"let g:ale_linters = { 'elixir': ['elixir-ls'] }
 
 set completeopt=menu,menuone,preview,noselect,noinsert
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
-nnoremap <silent> K :ALEDocumentation<CR>
+
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 let test#strategy = "neoterm"
 
